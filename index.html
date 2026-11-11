@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Σημειώσεις Νομικής</title>
+  <meta name="description" content="Σημειώσεις, πρόγραμμα σπουδών και χρήσιμες πληροφορίες για φοιτητές της Νομικής Σχολής Αθηνών (ΕΚΠΑ). Powered by ANEF Nomikis.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="powered top">Powered by <strong>ANEF Nomikis</strong></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <img src="assets/ship.png" alt="Λογότυπο ΑΝΕ.Φ. – καράβι" class="logo">
+      <div>
+        <h1>Σημειώσεις Νομικής</h1>
+        <p class="subtitle">Για φοιτητές της Νομικής Σχολής Αθηνών (ΕΚΠΑ)</p>
+      </div>
+    </div>
+    <nav class="tabs wrap" role="tablist" aria-label="Ενότητες">
+      <button role="tab" data-tab="notes" aria-selected="true">Σημειώσεις</button>
+      <button role="tab" data-tab="program" aria-selected="false">Πρόγραμμα Σπουδών</button>
+      <button role="tab" data-tab="faq" aria-selected="false">FAQ</button>
+      <button role="tab" data-tab="m365" aria-selected="false">Δωρεάν Microsoft 365</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- 1. Σημειώσεις -->
+    <section id="tab-notes" class="panel" role="tabpanel">
+      <div class="panel-head">
+        <h2>Σημειώσεις ανά μάθημα</h2>
+        <a id="submit-btn" class="btn" target="_blank" rel="noopener">Στείλε σημειώσεις</a>
+      </div>
+      <p class="hint">Οι σημειώσεις που στέλνονται μέσω της φόρμας ανεβαίνουν μόνο αφού εγκριθούν από την ομάδα.</p>
+      <input id="notes-search" type="search" class="search" placeholder="Αναζήτηση μαθήματος ή τίτλου…" aria-label="Αναζήτηση σημειώσεων">
+      <div id="notes-list"></div>
+    </section>
+
+    <!-- 2. Πρόγραμμα σπουδών -->
+    <section id="tab-program" class="panel" role="tabpanel" hidden>
+      <h2>Πρόγραμμα Σπουδών</h2>
+      <p class="hint" id="program-source"></p>
+      <div class="filters">
+        <input id="prog-search" type="search" class="search" placeholder="Αναζήτηση με τίτλο ή κωδικό…" aria-label="Αναζήτηση μαθήματος">
+        <select id="f-year" aria-label="Έτος"><option value="">Όλα τα έτη</option></select>
+        <select id="f-sem" aria-label="Εξάμηνο"><option value="">Όλα τα εξάμηνα</option></select>
+        <select id="f-type" aria-label="Είδος μαθήματος"><option value="">Όλα τα είδη</option></select>
+      </div>
+      <div id="program-list"></div>
+    </section>
+
+    <!-- 3. FAQ -->
+    <section id="tab-faq" class="panel" role="tabpanel" hidden>
+      <h2>Συχνές ερωτήσεις</h2>
+      <p class="hint" id="faq-source"></p>
+      <input id="faq-search" type="search" class="search" placeholder="Αναζήτηση στις ερωτήσεις…" aria-label="Αναζήτηση FAQ">
+      <div id="faq-list"></div>
+    </section>
+
+    <!-- 4. Microsoft 365 -->
+    <section id="tab-m365" class="panel" role="tabpanel" hidden>
+      <h2>Δωρεάν Microsoft 365 για φοιτητές ΕΚΠΑ</h2>
+      <p class="hint" id="m365-source"></p>
+      <ol id="m365-steps" class="steps"></ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <img src="assets/ship.png" alt="" class="logo-sm">
+      <p>Σημειώσεις Νομικής · Ανεπίσημος ιστότοπος φοιτητών. Οι επίσημες πληροφορίες βρίσκονται στις σελίδες του ΕΚΠΑ.</p>
+    </div>
+    <div class="powered bottom">Powered by <strong>ANEF Nomikis</strong></div>
+  </footer>
+
+  <script src="data/config.js"></script>
+  <script src="data/notes.js"></script>
+  <script src="data/courses.js"></script>
+  <script src="data/faq.js"></script>
+  <script src="data/m365.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
