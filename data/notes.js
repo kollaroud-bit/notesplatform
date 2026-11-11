@@ -3,4 +3,5 @@
 // { code: "2009", title: "Τίτλος", file: "notes/onoma-arxeiou.pdf", author: "(προαιρετικό)", date: "(προαιρετικό)" }
 // Υποστηρίζονται .pdf, .doc, .docx
 window.NOTES = [
+  { code: "2010", title: "Σημειώσεις Ειδικού Ποινικού", file: "notes/eidiko-poiniko-konstantakopoulou.pdf", author: "Κάτια Κωνσταντακοπούλου" }
 ];
