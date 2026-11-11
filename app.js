@@ -31,25 +31,40 @@
     const ext = path.split(".").pop().toLowerCase();
     return ext === "pdf" ? "PDF" : (ext === "doc" || ext === "docx") ? "Word" : ext.toUpperCase();
   }
+  const GR = ["", "Α΄", "Β΄", "Γ΄", "Δ΄", "Ε΄", "ΣΤ΄", "Ζ΄", "Η΄"];
+  // Κάθε σημείωση συνδέεται με μάθημα μέσω του κωδικού (code)
+  const notesFor = (code) => NOTES.filter((n) => n.code === code);
+  function fileRow(n) {
+    return `<div class="file-row">
+      <div>
+        <span class="badge">${fileType(n.file)}</span>${esc(n.title)}
+        <div class="file-meta">${[n.author && "Από: " + esc(n.author), n.date && esc(n.date)].filter(Boolean).join(" · ")}</div>
+      </div>
+      <a class="btn" href="${esc(n.file)}" download>Κατέβασμα</a>
+    </div>`;
+  }
   function renderNotes() {
+    if (!COURSES.length) return ($("#notes-list").innerHTML = empty("Δεν υπάρχουν μαθήματα."));
     const q = norm($("#notes-search").value);
-    const items = NOTES.filter((n) => !q || norm(n.course + " " + n.title + " " + (n.author || "")).includes(q));
-    if (!NOTES.length) return ($("#notes-list").innerHTML = empty("Δεν έχουν ανέβει ακόμη σημειώσεις."));
-    if (!items.length) return ($("#notes-list").innerHTML = empty("Δεν βρέθηκαν σημειώσεις για αυτή την αναζήτηση."));
-    const groups = {};
-    items.forEach((n) => (groups[n.course] = groups[n.course] || []).push(n));
-    $("#notes-list").innerHTML = Object.keys(groups).sort((a, b) => a.localeCompare(b, "el")).map((c) => `
-      <div class="card course-group">
-        <h3>${esc(c)}</h3>
-        ${groups[c].map((n) => `
-          <div class="file-row">
-            <div>
-              <span class="badge">${fileType(n.file)}</span>${esc(n.title)}
-              <div class="file-meta">${[n.author && "Από: " + esc(n.author), n.date && esc(n.date)].filter(Boolean).join(" · ")}</div>
-            </div>
-            <a class="btn" href="${esc(n.file)}" download>Κατέβασμα</a>
-          </div>`).join("")}
-      </div>`).join("");
+    const items = COURSES.filter((c) => !q ||
+      norm(c.title + " " + c.code + " " + notesFor(c.code).map((n) => n.title + " " + (n.author || "")).join(" ")).includes(q));
+    if (!items.length) return ($("#notes-list").innerHTML = empty("Δεν βρέθηκε μάθημα για αυτή την αναζήτηση."));
+    const sems = [...new Set(items.map((c) => c.semester))].sort((a, b) => a - b);
+    $("#notes-list").innerHTML = sems.map((s) => `
+      <h3 class="sem-title">${GR[s] || s} εξάμηνο</h3>
+      <ul class="course-list">
+        ${items.filter((c) => c.semester === s).map((c) => {
+          const ns = notesFor(c.code);
+          return `<li><details class="course-item">
+            <summary>
+              <span class="ci-main"><span class="ci-title">${esc(c.title)}</span> <span class="ci-code">${esc(c.code)}</span>
+                <span class="ci-meta">${esc(c.ects)} ECTS · ${esc(c.type)} · ${esc(c.sector)}</span></span>
+              <span class="ci-count${ns.length ? " has" : ""}">${ns.length ? ns.length + (ns.length === 1 ? " αρχείο" : " αρχεία") : "—"}</span>
+            </summary>
+            <div class="ci-files">${ns.length ? ns.map(fileRow).join("") : `<p class="file-meta">Δεν υπάρχουν ακόμη σημειώσεις για αυτό το μάθημα.</p>`}</div>
+          </details></li>`;
+        }).join("")}
+      </ul>`).join("");
   }
   $("#notes-search").addEventListener("input", renderNotes);
   renderNotes();
@@ -64,7 +79,6 @@
   const uniq = (k) => [...new Set(COURSES.map((c) => c[k]).filter((v) => v !== undefined && v !== ""))];
   const fill = (sel, vals, label) => vals.forEach((v) => sel.insertAdjacentHTML("beforeend", `<option value="${esc(v)}">${esc(label(v))}</option>`));
   fill($("#f-year"), uniq("year").sort((a, b) => a - b), (v) => v + "ο έτος");
-  const GR = ["", "Α΄", "Β΄", "Γ΄", "Δ΄", "Ε΄", "ΣΤ΄", "Ζ΄", "Η΄"];
   fill($("#f-sem"), uniq("semester").sort((a, b) => a - b), (v) => (GR[v] || v) + " εξάμηνο");
   fill($("#f-type"), uniq("type").sort((a, b) => a.localeCompare(b, "el")), (v) => v);
 

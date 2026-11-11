@@ -128,3 +128,17 @@ details.card[open] summary::before { content: "–"; }
   td { border: 0; padding: 3px 12px; }
   td::before { content: attr(data-label) ": "; font-weight: 600; color: var(--muted); }
 }
+
+/* Λίστα μαθημάτων στις Σημειώσεις */
+.course-list { list-style: none; margin: 0 0 8px; padding: 0; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.course-list > li + li { border-top: 1px solid var(--border); }
+.course-item summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; cursor: pointer; list-style: none; }
+.course-item summary::-webkit-details-marker { display: none; }
+.course-item summary:hover { background: var(--orange-soft); }
+.ci-title { font-weight: 600; }
+.ci-code { display: inline-block; font-size: .8rem; font-weight: 700; color: var(--orange-dark); background: var(--orange-soft); padding: 1px 7px; border-radius: 6px; margin-left: 4px; }
+.ci-meta { display: block; font-size: .78rem; color: var(--muted); margin-top: 2px; }
+.ci-count { flex-shrink: 0; font-size: .8rem; color: var(--muted); }
+.ci-count.has { color: #fff; background: var(--orange); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+.ci-files { padding: 0 14px 10px; }
+@media (prefers-color-scheme: dark) { .ci-code { color: var(--orange); } }
