@@ -142,3 +142,8 @@ details.card[open] summary::before { content: "–"; }
 .ci-count.has { color: #fff; background: var(--orange); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
 .ci-files { padding: 0 14px 10px; }
 @media (prefers-color-scheme: dark) { .ci-code { color: var(--orange); } }
+
+.site-footer .footer-terms { display: block; padding-top: 0; }
+.footer-terms h3 { margin: 0 0 4px; font-size: .9rem; color: var(--orange-dark); }
+.footer-terms a { color: var(--orange-dark); font-weight: 600; word-break: break-all; }
+@media (prefers-color-scheme: dark) { .footer-terms h3, .footer-terms a { color: var(--orange); } }
