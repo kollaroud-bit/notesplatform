@@ -3,5 +3,6 @@
 // { code: "2009", title: "Τίτλος", file: "notes/onoma-arxeiou.pdf", author: "(προαιρετικό)", date: "(προαιρετικό)" }
 // Υποστηρίζονται .pdf, .doc, .docx
 window.NOTES = [
-  { code: "2010", title: "Σημειώσεις Ειδικού Ποινικού", file: "notes/eidiko-poiniko-konstantakopoulou.pdf", author: "Κάτια Κωνσταντακοπούλου" }
+  { code: "2010", title: "Σημειώσεις Ειδικού Ποινικού", file: "notes/eidiko-poiniko-konstantakopoulou.pdf", author: "Κάτια Κωνσταντακοπούλου" },
+  { code: "2002", title: "Σημειώσεις Γενικών Αρχών Αστικού Δικαίου", file: "notes/genikes-arxes-astikou-konstantakopoulou.pdf", author: "Κάτια Κωνσταντακοπούλου" }
 ];
