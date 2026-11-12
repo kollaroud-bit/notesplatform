@@ -28,7 +28,7 @@
   else { submit.classList.add("disabled"); submit.textContent = "Φόρμα αποστολής: σύντομα"; }
 
   function fileType(path) {
-    const ext = path.split(".").pop().toLowerCase();
+    const ext = path.split("?")[0].split(".").pop().toLowerCase();
     return ext === "pdf" ? "PDF" : (ext === "doc" || ext === "docx") ? "Word" : ext.toUpperCase();
   }
   const GR = ["", "Α΄", "Β΄", "Γ΄", "Δ΄", "Ε΄", "ΣΤ΄", "Ζ΄", "Η΄"];
